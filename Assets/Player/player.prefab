@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 11469404}
   - component: {fileID: 114533005487141528}
   m_Layer: 0
-  m_Name: ThirdPersonController
+  m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2481,7 +2481,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 521b611700410be45810047f0a74e899, type: 3}
   m_Name: 
@@ -2502,7 +2502,7 @@ MonoBehaviour:
   m_JumpPower: 6
   m_GravityMultiplier: 2
   m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 3
+  m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 2
   m_GroundCheckDistance: 0.3
 --- !u!136 &13615390
