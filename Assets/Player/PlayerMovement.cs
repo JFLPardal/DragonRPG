@@ -22,19 +22,6 @@ public class PlayerMovement : MonoBehaviour
         currentDestination = transform.position;	
     }
 
-    private void FixedUpdate()
-	{//TODO allow the player to choose this button
-		if (Input.GetKeyDown (KeyCode.G)) //G for gamepad 
-		{ 
-			isInControllerMode = !isInControllerMode;
-			currentDestination = transform.position;	//clear click target
-		}
-		if (isInControllerMode)
-			ProcessGamepadMovement ();
-		else
-        	ProcessMouseMovement ();
-    }
-
 	private void ProcessGamepadMovement()
 	{
 		//get input values
@@ -48,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 		thirdPersonCharacter.Move (movement, false, false);
 	}
 
-	private void ProcessMouseMovement ()
+	/*private void ProcessMouseMovement ()
 	{
 		if (Input.GetMouseButton (0)) 
 		{
@@ -66,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 			}
 		}
 		WalkToDestination ();
-	}
+	}*/
 
 	private void WalkToDestination ()
 	{

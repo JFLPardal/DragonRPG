@@ -9,29 +9,28 @@ public class CursorAffordance : MonoBehaviour {
 	[SerializeField] Texture2D targetCursor = null;
 	[SerializeField] Texture2D unknownCursor = null;
 	[SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
+	[SerializeField] const int layerWalkable = 8;
+	[SerializeField] const int layerEnemy = 9;
 
 	CameraRaycaster cameraRaycaster;
 
 	void Start () {
 		cameraRaycaster = GetComponent<CameraRaycaster> ();
-		cameraRaycaster.layerChangeObservers += OnLayerChanged;
+		cameraRaycaster.notifyLayerChangeObservers += OnLayerChanged;
 	}
 
-	void OnLayerChanged (Layer newLayer) //called only when the raycast is hitting a different layer than it was
+	void OnLayerChanged (int newLayer) //called only when the raycast is hitting a different layer than it was
 	{
 		switch(newLayer)
 		{
-			case(Layer.walkable):
+		case(layerWalkable):
 				Cursor.SetCursor (walkCursor, cursorHotspot, CursorMode.Auto);
 				break;
-			case(Layer.enemy):
+		case(layerEnemy):
 				Cursor.SetCursor (targetCursor, cursorHotspot, CursorMode.Auto);
 				break;
-			case(Layer.raycastEndStop):
-				Cursor.SetCursor (unknownCursor, cursorHotspot, CursorMode.Auto);
-				break;
 			default:
-				Debug.LogError ("Don't know what cursor to show");
+				Cursor.SetCursor (unknownCursor, cursorHotspot, CursorMode.Auto);
 				return;
 		}
 	}
