@@ -25,6 +25,7 @@ public class CameraRaycasterEditor : Editor
         serializedObject.ApplyModifiedProperties(); // De-serialize back to cameraRaycaster (and create undo point)
     }
 
+
     void BindArraySize()
     {
         int currentArraySize = serializedObject.FindProperty("layerPriorities.Array.size").intValue;
