@@ -6,15 +6,24 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class Enemy : MonoBehaviour, IDamageable {
 
 	[SerializeField] float maxHealthPoints = 100f;
-	[SerializeField] float attackRadius = 5f;
+
 	[SerializeField] float chaseRadius = 7f;
 
-	float currentHealthPoints = 100f;
+	[SerializeField] float attackRadius = 5f;
+	[SerializeField] float damagePerShot = 2f;
+	[SerializeField] float secondsBetweenShots = 0.5f;
+	[SerializeField] GameObject projectileToUse;
+	[SerializeField] GameObject projectileSocket;
+	[SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
+
+	float currentHealthPoints;
+	bool isAttacking = false;
 	AICharacterControl aiCharacterControl = null;
 	GameObject player = null;
 
 	void Start()
 	{
+		currentHealthPoints = maxHealthPoints;
 		player = GameObject.FindGameObjectWithTag ("Player");
 		aiCharacterControl = GetComponent<AICharacterControl> ();
 	}
@@ -24,10 +33,17 @@ public class Enemy : MonoBehaviour, IDamageable {
 		float distanceToPlayer = Vector3.Distance (transform.position, player.transform.position);
 
 		//attack radius
-		if (distanceToPlayer < attackRadius) // if player is within range, chase him
-			print(gameObject.name + " is attacking player");
-		//TODO spawn projectile
-
+		if (distanceToPlayer <= attackRadius && !isAttacking) // if player is within range, chase him
+		{ 
+			isAttacking = true;
+			InvokeRepeating ("SpawnProjectile", 0f, secondsBetweenShots); //TODO switch to coroutine
+		}
+		//stop firing if player is outside of attack radius
+		if (distanceToPlayer > attackRadius)
+		{
+			isAttacking = false;
+			CancelInvoke ();
+		}
 		//chase radius
 		if (distanceToPlayer < chaseRadius) // if player is within range, chase him
 			aiCharacterControl.SetTarget (player.transform);
@@ -36,9 +52,23 @@ public class Enemy : MonoBehaviour, IDamageable {
 			
 	}
 
-	void IDamageable.TakeDamage(float damage)
+	//attack the player when in range
+	void SpawnProjectile()
+	{
+		GameObject newProjectile = Instantiate (projectileToUse, projectileSocket.transform.position, Quaternion.identity);
+		Projectile projectileComponent = newProjectile.GetComponent<Projectile> ();
+
+		projectileComponent.SetDamage(damagePerShot);			//set damage«
+
+		Vector3 unitVectorToPlayer = ( (player.transform.position + aimOffset) - projectileSocket.transform.position ).normalized;	//calculate and set velocity for each projectile
+		float projectileSpeed = projectileComponent.projectileSpeed;
+		newProjectile.GetComponent<Rigidbody> ().velocity = unitVectorToPlayer * projectileSpeed;
+	}
+
+	public void TakeDamage(float damage)
 	{
 		currentHealthPoints = Mathf.Clamp (currentHealthPoints - damage, 0f, maxHealthPoints);
+		if (currentHealthPoints <= 0) { Destroy (gameObject); }
 	}
 
 	public float healthAsPercentage	{ get { return currentHealthPoints / maxHealthPoints; }}

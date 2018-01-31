@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 23277779217507424}
   - component: {fileID: 135500362952152930}
   - component: {fileID: 54462117207612758}
-  - component: {fileID: 114283323872742182}
+  - component: {fileID: 114154830437043998}
   m_Layer: 0
-  m_Name: projectile
+  m_Name: fastProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347600295684294}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 256.2626, y: 0.19351643, z: 176.58269}
+  m_LocalPosition: {x: 248.18707, y: 0.49921805, z: 183.58716}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,7 +98,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114283323872742182
+--- !u!114 &114154830437043998
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCaused: 2
-  projectileSpeed: 10
+  projectileSpeed: 50
 --- !u!135 &135500362952152930
 SphereCollider:
   m_ObjectHideFlags: 1
