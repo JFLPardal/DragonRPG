@@ -2067,7 +2067,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1072561684470916}
   m_LocalRotation: {x: -0, y: 0.98970807, z: -0, w: -0.1431011}
-  m_LocalPosition: {x: 268.99, y: 0, z: 174.05}
+  m_LocalPosition: {x: 237.47, y: 4.11, z: 140.55}
   m_LocalScale: {x: 1.1999997, y: 1.1999999, z: 1.1999997}
   m_Children:
   - {fileID: 4836185232465168}
@@ -2571,8 +2571,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 40
-  chaseRadius: 12
-  attackRadius: 4
+  chaseRadius: 1.5
+  attackRadius: 2.5
   damagePerShot: -100
   secondsBetweenShots: 0.5
   projectileToUse: {fileID: 1347600295684294, guid: e4e071d9076f5824e97c5ef37881f62a,
