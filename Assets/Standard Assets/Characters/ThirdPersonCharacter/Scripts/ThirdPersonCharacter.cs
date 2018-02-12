@@ -68,7 +68,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				HandleAirborneMovement();
 			}
 
-
 			// send input and other state parameters to the animator
 			UpdateAnimator(move);
 		}
