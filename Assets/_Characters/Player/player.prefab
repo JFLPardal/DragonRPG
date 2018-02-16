@@ -719,6 +719,8 @@ MonoBehaviour:
   damagePerHit: 50
   minSecondsBetweenHits: 1
   maxAttackRange: 2
+  animatorOverrideController: {fileID: 22100000, guid: fd96901fdb497234c9b88c0d3750c942,
+    type: 2}
   weaponInUse: {fileID: 11400000, guid: c025be302c8939b4e8b2fc7bb7e8ae1b, type: 2}
 --- !u!114 &114963636985259232
 MonoBehaviour:

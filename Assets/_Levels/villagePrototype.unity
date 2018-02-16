@@ -7634,6 +7634,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
+        type: 2}
+      propertyPath: animatorOverrideController
+      value: 
+      objectReference: {fileID: 22100000, guid: fd96901fdb497234c9b88c0d3750c942,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5cd50007ee647934b8f1912c255118e1, type: 2}
   m_IsPrefabParent: 0

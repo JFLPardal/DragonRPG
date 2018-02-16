@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
+
+//TODO check if dependecy makes sense
+using RPG.Weapons;
+using RPG.Core;
+
 namespace RPG.Characters
 {
 	public class Enemy : MonoBehaviour, IDamageable {
