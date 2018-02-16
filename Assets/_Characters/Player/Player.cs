@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using RPG.CameraUI;
+//TODO consider getting rid of this dependency
 
+namespace RPG.Characters
+{
 public class Player : MonoBehaviour, IDamageable {
 
 
@@ -82,4 +86,5 @@ public class Player : MonoBehaviour, IDamageable {
 		cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
 		//subscribe to the click observer, that tells us where the player clicked, in the world
 	}
+}
 }

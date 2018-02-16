@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CameraRaycaster))]
-public class CursorAffordance : MonoBehaviour {
+namespace RPG.CameraUI
+{
+	[RequireComponent(typeof(CameraRaycaster))]
+	public class CursorAffordance : MonoBehaviour {
 
 	[SerializeField] Texture2D walkCursor = null;
 	[SerializeField] Texture2D targetCursor = null;
@@ -38,3 +40,4 @@ public class CursorAffordance : MonoBehaviour {
 }
 
 //TODO consider de-registering OnLayerChanged on leaving all game scenes
+}

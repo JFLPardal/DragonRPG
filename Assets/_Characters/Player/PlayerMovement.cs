@@ -2,12 +2,16 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.AI;
+using RPG.CameraUI;
+//TODO consider getting rid of this dependency
 
-[RequireComponent(typeof (ThirdPersonCharacter))]
-[RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(AICharacterControl))]
+namespace RPG.Characters
+{
+	[RequireComponent(typeof (ThirdPersonCharacter))]
+	[RequireComponent(typeof(NavMeshAgent))]
+	[RequireComponent(typeof(AICharacterControl))]
 
-public class PlayerMovement : MonoBehaviour
+	public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] const int layerWalkable = 8;
 	[SerializeField] const int layerEnemy = 9;
@@ -62,4 +66,4 @@ public class PlayerMovement : MonoBehaviour
 		thirdPersonCharacter.Move (movement, false, false);
 	}
 }
-
+}

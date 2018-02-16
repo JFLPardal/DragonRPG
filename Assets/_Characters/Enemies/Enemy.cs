@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-public class Enemy : MonoBehaviour, IDamageable {
+namespace RPG.Characters
+{
+	public class Enemy : MonoBehaviour, IDamageable {
 
 	[SerializeField] float maxHealthPoints = 100f;
 
@@ -84,4 +86,5 @@ public class Enemy : MonoBehaviour, IDamageable {
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere (transform.position, attackRadius);
 	}
+}
 }
