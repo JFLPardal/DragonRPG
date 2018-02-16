@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour, IDamageable {
 		if (distanceToPlayer <= attackRadius && !isAttacking) // if player is within range, chase him
 		{ 
 			isAttacking = true;
-			InvokeRepeating ("SpawnProjectile", 0f, secondsBetweenShots); //TODO switch to coroutine
+			InvokeRepeating ("FireProjectile", 0f, secondsBetweenShots); //TODO switch to coroutine
 		}
 		//stop firing if player is outside of attack radius
 		if (distanceToPlayer > attackRadius)
@@ -52,16 +52,17 @@ public class Enemy : MonoBehaviour, IDamageable {
 			
 	}
 
-	//attack the player when in range
-	void SpawnProjectile()
+	//TODO separate out Character firing logic
+	void FireProjectile()
 	{
 		GameObject newProjectile = Instantiate (projectileToUse, projectileSocket.transform.position, Quaternion.identity);
 		Projectile projectileComponent = newProjectile.GetComponent<Projectile> ();
+		projectileComponent.SetDamage(damagePerShot);	
+		projectileComponent.SetShooter (gameObject);
 
-		projectileComponent.SetDamage(damagePerShot);			//set damage«
 
 		Vector3 unitVectorToPlayer = ( (player.transform.position + aimOffset) - projectileSocket.transform.position ).normalized;	//calculate and set velocity for each projectile
-		float projectileSpeed = projectileComponent.projectileSpeed;
+		float projectileSpeed = projectileComponent.GetDefaultLaunchSpeed();
 		newProjectile.GetComponent<Rigidbody> ().velocity = unitVectorToPlayer * projectileSpeed;
 	}
 

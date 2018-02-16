@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Player : MonoBehaviour, IDamageable {
 
@@ -13,11 +14,9 @@ public class Player : MonoBehaviour, IDamageable {
 	[SerializeField] float maxAttackRange = 2f;
 
 	[SerializeField] Weapon weaponInUse;
-	[SerializeField] GameObject weaponSocket;
 
 
 	float currentHealthPoints;
-	GameObject currentTarget;
 	CameraRaycaster cameraRaycaster;
 	float lastHitTime = 0f;
 
@@ -30,6 +29,7 @@ public class Player : MonoBehaviour, IDamageable {
 		PutWeaponInHand ();
 	}
 
+	//TODO refactor to reduce number of lines
 	void OnMouseClick (RaycastHit raycastHit, int layerHit)
 	{
 		if(layerHit == enemyLayer)
@@ -41,7 +41,6 @@ public class Player : MonoBehaviour, IDamageable {
 			if((enemy.transform.position - transform.position).magnitude > maxAttackRange)	
 				return;
 
-			currentTarget = enemy;
 			var enemyComponent = enemy.GetComponent<Enemy> ();
 			if (Time.time - lastHitTime > minSecondsBetweenHits)
 			{
@@ -60,13 +59,24 @@ public class Player : MonoBehaviour, IDamageable {
 	void PutWeaponInHand()
 	{
 		var weaponPrefab = weaponInUse.GetWeaponPrefab ();
-		var weapon = Instantiate (weaponPrefab, weaponSocket.transform);
+		GameObject dominantHand = RequestDominantHand ();
+		var weapon = Instantiate (weaponPrefab, dominantHand.transform);
 		weapon.transform.localPosition = weaponInUse.gripTransform.localPosition;
 		weapon.transform.localRotation = weaponInUse.gripTransform.localRotation;
 
 	}
 
-	void RegisterForMouseClick ()
+	private GameObject RequestDominantHand()
+	{
+		var dominantHands = GetComponentsInChildren<DominantHand> ();
+		int numberOfDominantsHands = dominantHands.Length;
+		Assert.AreNotEqual (numberOfDominantsHands, 0, "No Dominant Hands Found");
+		Assert.IsFalse (numberOfDominantsHands > 1, "Multiple dominant hand scripts on player, remove one");
+		return dominantHands [0].gameObject;
+
+	}
+
+	private void RegisterForMouseClick ()
 	{
 		cameraRaycaster = FindObjectOfType<CameraRaycaster> ();
 		cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
