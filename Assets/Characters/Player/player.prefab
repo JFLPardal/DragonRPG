@@ -707,7 +707,8 @@ MonoBehaviour:
   damagePerHit: 50
   minSecondsBetweenHits: 1
   maxAttackRange: 2
-  weaponInUse: {fileID: 11400000, guid: d738f0919219e8841ab63f7f03cc48f1, type: 2}
+  weaponInUse: {fileID: 11400000, guid: c025be302c8939b4e8b2fc7bb7e8ae1b, type: 2}
+  weaponSocket: {fileID: 1518661502909184}
 --- !u!114 &114963636985259232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -808,7 +809,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1806266026967232}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.41
   m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
@@ -817,7 +818,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
+  m_Height: 1.43
+  m_BaseOffset: -0.09
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
