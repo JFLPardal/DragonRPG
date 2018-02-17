@@ -14,7 +14,7 @@ namespace RPG.Characters
 {
 	public class Player : MonoBehaviour, IDamageable 
 	{
-		[SerializeField] float maxHealthPoints = 100f;
+		[SerializeField] float maxHealthPoints = 100f; 
 		//TODO change this way of accessing the layer
 		[SerializeField] int enemyLayer = 9;
 		[SerializeField] float damagePerHit = 10f;
