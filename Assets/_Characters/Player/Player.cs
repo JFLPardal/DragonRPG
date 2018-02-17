@@ -18,59 +18,64 @@ namespace RPG.Characters
 		//TODO change this way of accessing the layer
 		[SerializeField] int enemyLayer = 9;
 		[SerializeField] float damagePerHit = 10f;
-		[SerializeField] float minSecondsBetweenHits = 0.5f;
-		[SerializeField] float maxAttackRange = 2f;
+		[SerializeField] Weapon weaponInUse;
 		[SerializeField] AnimatorOverrideController animatorOverrideController;
 
-		[SerializeField] Weapon weaponInUse;
-
-
+		Animator animator;
 		float currentHealthPoints;
 		CameraRaycaster cameraRaycaster;
 		float lastHitTime = 0f;
 
 		public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; }}
 
-		void Start()
-		{
-			RegisterForMouseClick ();
-			SetCurrentMaxHealth ();
-			PutWeaponInHand ();
-			OverrideAnimatorController ();
-		}
-
-
-
-		//TODO refactor to reduce number of lines
-		void OnMouseClick (RaycastHit raycastHit, int layerHit)
-		{
-			if(layerHit == enemyLayer)
-			{
-				// get the clicked enemy
-				var enemy = raycastHit.collider.gameObject;	
-
-				//check if enemy is in range
-				if((enemy.transform.position - transform.position).magnitude > maxAttackRange)	
-					return;
-
-				var enemyComponent = enemy.GetComponent<Enemy> ();
-				if (Time.time - lastHitTime > minSecondsBetweenHits)
-				{
-					//damage the clicked enemy
-					enemyComponent.TakeDamage (damagePerHit);	
-					lastHitTime = Time.time;
-				}
-			}
-		}
-
 		void IDamageable.TakeDamage(float damage)
 		{
 			currentHealthPoints = Mathf.Clamp (currentHealthPoints - damage, 0f, maxHealthPoints);
 		}
 
-		private void OverrideAnimatorController()
+		void Start()
 		{
-			var animator = GetComponent<Animator> ();
+			RegisterForMouseClick ();
+			SetCurrentMaxHealth ();
+			PutWeaponInHand ();
+			SetupRuntimeAnimator ();
+		}
+
+		void OnMouseClick (RaycastHit raycastHit, int layerHit)
+		{
+			if(layerHit == enemyLayer)
+			{
+				var enemy = raycastHit.collider.gameObject;	
+				if(IsTargetInRange(enemy))
+				{
+					AttackTarget (enemy);
+				}
+			}
+		}
+
+		private void AttackTarget(GameObject target)
+		{
+
+			var enemyComponent = target.GetComponent<Enemy> ();
+			if (Time.time - lastHitTime > weaponInUse.GetFireRate())
+			{
+				//TODO make const
+				animator.SetTrigger ("Attack");	
+				enemyComponent.TakeDamage (damagePerHit);
+				lastHitTime = Time.time;
+			}
+			
+		}
+
+		private bool IsTargetInRange(GameObject target)
+		{
+			float distanceToTarget = (target.transform.position - transform.position).magnitude;
+			return distanceToTarget <= weaponInUse.GetAttackRange();
+		}
+
+		private void SetupRuntimeAnimator()
+		{
+			animator = GetComponent<Animator> ();
 			animator.runtimeAnimatorController = animatorOverrideController;
 			animatorOverrideController ["DEFAULT ATTACK"] = weaponInUse.GetAnimClip ();
 		}
