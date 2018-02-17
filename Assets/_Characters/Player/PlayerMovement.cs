@@ -22,8 +22,6 @@ namespace RPG.Characters
 	GameObject walkTarget = null;
 	AICharacterControl aiCharacterControl = null;
      
-	bool isInControllerMode = false;	//TODO consider make this variable static
-
     void Start()
     {
         cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();

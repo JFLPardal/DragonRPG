@@ -29,7 +29,7 @@ namespace RPG.Weapons
 		{
 			return minSecondsBetweenHits;
 		}
-
+		 
 		public float GetAttackRange()
 		{
 			return maxAttackRange;
