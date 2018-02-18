@@ -4513,9 +4513,10 @@ Prefab:
         type: 2}
       propertyPath: weaponInUse
       value: 
-      objectReference: {fileID: 11400000, guid: d738f0919219e8841ab63f7f03cc48f1,
+      objectReference: {fileID: 11400000, guid: ebfb49c5fe73ec6449d6c97bb543ab2c,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114635952382860108, guid: 5cd50007ee647934b8f1912c255118e1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5cd50007ee647934b8f1912c255118e1, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &885355257 stripped
@@ -6345,6 +6346,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7d90c4bd9faaa843b20a14d52f1bd87, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1315515623 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1450191239848800, guid: 5cd50007ee647934b8f1912c255118e1,
+    type: 2}
+  m_PrefabInternal: {fileID: 883607226}
+--- !u!114 &1315515625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315515623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ebcdbefb19d7842b042a48ea51e484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1315681721
 Prefab:
   m_ObjectHideFlags: 0
