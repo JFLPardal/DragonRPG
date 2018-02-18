@@ -717,11 +717,9 @@ MonoBehaviour:
   maxHealthPoints: 1000
   enemyLayer: 9
   damagePerHit: 50
-  minSecondsBetweenHits: 1
-  maxAttackRange: 2
+  weaponInUse: {fileID: 11400000, guid: c025be302c8939b4e8b2fc7bb7e8ae1b, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: fd96901fdb497234c9b88c0d3750c942,
     type: 2}
-  weaponInUse: {fileID: 11400000, guid: c025be302c8939b4e8b2fc7bb7e8ae1b, type: 2}
 --- !u!114 &114963636985259232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -832,6 +830,6 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.43
-  m_BaseOffset: -0.09
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
