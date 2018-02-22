@@ -1366,6 +1366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyBar: {fileID: 1862616675}
   maxEnergyPoints: 100
+  pointsPerHit: 10
 --- !u!1001 &347985308
 Prefab:
   m_ObjectHideFlags: 0
@@ -6585,7 +6586,8 @@ Prefab:
       propertyPath: m_ClearFlags
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 92586011140931470, guid: 406150a7335ae274380f5f62c456d409, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 406150a7335ae274380f5f62c456d409, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1362873427

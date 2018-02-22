@@ -26,9 +26,6 @@ namespace RPG.CameraUI
 	{
 		switch(newLayer)
 		{
-		case(layerWalkable):
-				Cursor.SetCursor (walkCursor, cursorHotspot, CursorMode.Auto);
-				break;
 		case(layerEnemy):
 				Cursor.SetCursor (targetCursor, cursorHotspot, CursorMode.Auto);
 				break;
