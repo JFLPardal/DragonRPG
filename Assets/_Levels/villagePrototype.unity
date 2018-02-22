@@ -1348,6 +1348,24 @@ Transform:
   m_PrefabParentObject: {fileID: 4505919641394052, guid: bd2c85e2c926d4845ae18afc1a3f4e55,
     type: 2}
   m_PrefabInternal: {fileID: 322681204}
+--- !u!1 &333165592 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1806266026967232, guid: 5cd50007ee647934b8f1912c255118e1,
+    type: 2}
+  m_PrefabInternal: {fileID: 883607226}
+--- !u!114 &333165593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 333165592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9039ac13291cbf944910d04d8526ac00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyBar: {fileID: 1862616675}
+  maxEnergyPoints: 100
 --- !u!1001 &347985308
 Prefab:
   m_ObjectHideFlags: 0
@@ -9584,19 +9602,15 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114500463143377016, guid: 75a43cca039264395b99698681e52275,
-        type: 2}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 2800000, guid: 7541bf186503b6341be2cbfc4af67a97, type: 3}
-    - target: {fileID: 114223215525048482, guid: 75a43cca039264395b99698681e52275,
-        type: 2}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 2800000, guid: a7b159d74c92cf74ba5a37d73efefff8, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75a43cca039264395b99698681e52275, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1862616675 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114500463143377016, guid: 75a43cca039264395b99698681e52275,
+    type: 2}
+  m_PrefabInternal: {fileID: 1862616674}
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1886756627
 Prefab:
   m_ObjectHideFlags: 0

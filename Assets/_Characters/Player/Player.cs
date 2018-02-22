@@ -14,12 +14,13 @@ namespace RPG.Characters
 {
 	public class Player : MonoBehaviour, IDamageable 
 	{
-		[SerializeField] float maxHealthPoints = 100f; 
+
 		//TODO change this way of accessing the layer
 		[SerializeField] int enemyLayer = 9;
+		[SerializeField] float maxHealthPoints = 100f; 
 		[SerializeField] float damagePerHit = 10f;
-		[SerializeField] Weapon weaponInUse;
-		[SerializeField] AnimatorOverrideController animatorOverrideController;
+		[SerializeField] Weapon weaponInUse = null;
+		[SerializeField] AnimatorOverrideController animatorOverrideController = null;
 
 		Animator animator;
 		float currentHealthPoints;
