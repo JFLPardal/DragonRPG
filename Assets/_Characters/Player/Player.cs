@@ -16,7 +16,6 @@ namespace RPG.Characters
 	{
 
 		//TODO change this way of accessing the layer
-		[SerializeField] int enemyLayer = 9;
 		[SerializeField] float maxHealthPoints = 100f; 
 		[SerializeField] float damagePerHit = 10f;
 		[SerializeField] Weapon weaponInUse = null;
@@ -42,30 +41,15 @@ namespace RPG.Characters
 			SetupRuntimeAnimator ();
 		}
 
-		void OnMouseClick (RaycastHit raycastHit, int layerHit)
+		private void AttackTarget(Enemy enemy)
 		{
-			if(layerHit == enemyLayer)
-			{
-				var enemy = raycastHit.collider.gameObject;	
-				if(IsTargetInRange(enemy))
-				{
-					AttackTarget (enemy);
-				}
-			}
-		}
-
-		private void AttackTarget(GameObject target)
-		{
-
-			var enemyComponent = target.GetComponent<Enemy> ();
 			if (Time.time - lastHitTime > weaponInUse.GetFireRate())
 			{
 				//TODO make const
 				animator.SetTrigger ("Attack");	
-				enemyComponent.TakeDamage (damagePerHit);
+				enemy.TakeDamage (damagePerHit);
 				lastHitTime = Time.time;
 			}
-			
 		}
 
 		private bool IsTargetInRange(GameObject target)
@@ -106,10 +90,18 @@ namespace RPG.Characters
 
 		}
 
+		void OnMouseOverEnemy(Enemy enemy)
+		{
+			if(Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
+			{
+				AttackTarget (enemy);
+			}
+		}
+
 		private void RegisterForMouseClick ()
 		{
 			cameraRaycaster = FindObjectOfType<CameraRaycaster> ();
-			cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
+			cameraRaycaster.notifyMouseOverEnemyObservers += OnMouseOverEnemy;
 			//subscribe to the click observer, that tells us where the player clicked, in the world
 		}
 	}
