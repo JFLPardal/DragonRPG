@@ -48,7 +48,7 @@ namespace RPG.CameraUI
 			Physics.Raycast (ray, out hitInfo, maxRaycastDepth);
 			var gameObjectHit = hitInfo.collider.gameObject;
 			var enemyHit = gameObjectHit.GetComponent<Enemy>();
-			if(enemyHit != null)
+			if(enemyHit)
 			{
 				Cursor.SetCursor (enemyCursor, cursorHotspot, CursorMode.Auto);
 				notifyMouseOverEnemyObservers (enemyHit);
@@ -65,7 +65,7 @@ namespace RPG.CameraUI
 			if(potentiallyWalkableHit)
 			{
 				Cursor.SetCursor (walkCursor, cursorHotspot, CursorMode.Auto);
-				//notifyMouseOverPotentiallyWalkableObservers(hitInfo.point);
+				notifyMouseOverPotentiallyWalkableObservers(hitInfo.point);
 				return true;
 			}
 			return false;
