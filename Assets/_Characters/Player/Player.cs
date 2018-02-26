@@ -17,12 +17,12 @@ namespace RPG.Characters
 
 		//TODO change this way of accessing the layer
 		[SerializeField] float maxHealthPoints = 100f; 
-		[SerializeField] float damagePerHit = 10f;
+		[SerializeField] float baseDamage = 10f;
 		[SerializeField] Weapon weaponInUse = null;
 		[SerializeField] AnimatorOverrideController animatorOverrideController = null;
 
 		//temporarily serialized for dubbing
-		[SerializeField] SpecialAbilityConfig ability1;
+		[SerializeField] SpecialAbility[] abilities;
 
 		Animator animator;
 		float currentHealthPoints;
@@ -42,7 +42,7 @@ namespace RPG.Characters
 			SetCurrentMaxHealth ();
 			PutWeaponInHand ();
 			SetupRuntimeAnimator ();
-			ability1.AddComponent (gameObject);
+			abilities[0].AttachComponentTo (gameObject);
 		}
 
 		private void AttackTarget(Enemy enemy)
@@ -51,7 +51,7 @@ namespace RPG.Characters
 			{
 				//TODO make const
 				animator.SetTrigger ("Attack");	
-				enemy.TakeDamage (damagePerHit);
+				enemy.TakeDamage (baseDamage);
 				lastHitTime = Time.time;
 			}
 		}
@@ -102,18 +102,20 @@ namespace RPG.Characters
 			}
 			else if(Input.GetMouseButtonDown(1))
 			{
-				AttemptSpecialAbility1 (enemy);
+				AttemptSpecialAbility (0, enemy);
 			}
 		}
 
-		private void AttemptSpecialAbility1(Enemy enemy)
+		private void AttemptSpecialAbility(int abilityIndex, Enemy enemy)
 		{
 			var energyComponent = GetComponent<Energy> ();
-			// TODO read from the ability's SO
-			if(energyComponent.IsEnergyAvailable(10))
+			float energyCost = abilities [abilityIndex].GetEnergyCost ();
+
+			if(energyComponent.IsEnergyAvailable(energyCost))
 			{
-				energyComponent.ConsumeEnergy (10);
-				// TODO use ability
+				energyComponent.ConsumeEnergy (energyCost);
+				var abilityParams = new AbilityUseParams (enemy, baseDamage);
+				abilities [abilityIndex].Use (abilityParams);
 			}
 		}
 

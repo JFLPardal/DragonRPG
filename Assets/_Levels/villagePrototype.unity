@@ -1366,7 +1366,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyBar: {fileID: 1862616675}
   maxEnergyPoints: 100
-  pointsPerHit: 10
 --- !u!1001 &347985308
 Prefab:
   m_ObjectHideFlags: 0
@@ -4496,6 +4495,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
+        type: 2}
+      propertyPath: abilities.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4239624079763954, guid: 5cd50007ee647934b8f1912c255118e1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 278.3
@@ -4533,6 +4537,18 @@ Prefab:
       propertyPath: weaponInUse
       value: 
       objectReference: {fileID: 11400000, guid: ebfb49c5fe73ec6449d6c97bb543ab2c,
+        type: 2}
+    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
+        type: 2}
+      propertyPath: ability1
+      value: 
+      objectReference: {fileID: 11400000, guid: 3cc2d7bfbae60f84d965bf1dd20d78fc,
+        type: 2}
+    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
+        type: 2}
+      propertyPath: abilities.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3cc2d7bfbae60f84d965bf1dd20d78fc,
         type: 2}
     m_RemovedComponents:
     - {fileID: 114635952382860108, guid: 5cd50007ee647934b8f1912c255118e1, type: 2}
