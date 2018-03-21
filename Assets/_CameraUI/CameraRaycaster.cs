@@ -12,8 +12,9 @@ namespace RPG.CameraUI
 		[SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
 
 		const int POTENTIALLY_WALKABLE_LAYER = 8;
-
 	    float maxRaycastDepth = 100f; // Hard coded value
+
+		Rect screenRectAtStart = new Rect (0, 0, Screen.width, Screen.height); // move to update to support screen resize
 
 		public delegate void OnMouseOverTerrain(Vector3 destination);
 		public event OnMouseOverTerrain notifyMouseOverPotentiallyWalkableObservers;
@@ -36,16 +37,20 @@ namespace RPG.CameraUI
 
 		void PerformRaycasts()
 		{
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			// specify layer priority here, order matters
-			if(RaycastForEnemy(ray)) { return; }
-			if(RaycastForPotentiallyWalkable(ray)) { return; }
+			if(screenRectAtStart.Contains(Input.mousePosition))
+			{
+				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				// specify layer priority here, order matters
+				if(RaycastForEnemy(ray)) { return; }
+				if(RaycastForPotentiallyWalkable(ray)) { return; }
+			}
 		}
 
 		private bool RaycastForEnemy(Ray ray)
 		{
 			RaycastHit hitInfo;
 			Physics.Raycast (ray, out hitInfo, maxRaycastDepth);
+			if (hitInfo.collider == null) { return false; }
 			var gameObjectHit = hitInfo.collider.gameObject;
 			var enemyHit = gameObjectHit.GetComponent<Enemy>();
 			if(enemyHit)
