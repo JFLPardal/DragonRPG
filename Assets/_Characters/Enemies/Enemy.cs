@@ -25,17 +25,22 @@ namespace RPG.Characters
 	float currentHealthPoints;
 	bool isAttacking = false;
 	AICharacterControl aiCharacterControl = null;
-	GameObject player = null;
+	Player player = null;
 
 	void Start()
 	{
 		currentHealthPoints = maxHealthPoints;
-		player = GameObject.FindGameObjectWithTag ("Player");
+		player = FindObjectOfType<Player>();
 		aiCharacterControl = GetComponent<AICharacterControl> ();
 	}
 
 	void Update()
 	{
+			if(player.healthAsPercentage <= Mathf.Epsilon)
+			{
+				StopAllCoroutines ();   //stop firing behaviour
+				Destroy (this);			//stop enemy behaviour
+			}
 		float distanceToPlayer = Vector3.Distance (transform.position, player.transform.position);
 
 		//attack radius
