@@ -28,6 +28,9 @@ namespace RPG.Characters
 		//temporarily serialized for dubbing
 		[SerializeField] SpecialAbility[] abilities;
 
+        const string DEATH_TRIGGER = "Death";
+        const string ATTACK_TRIGGER = "Attack";
+
 		AudioSource audioSource;
 		Animator animator;
 		float currentHealthPoints;
@@ -59,9 +62,11 @@ namespace RPG.Characters
 
 		IEnumerator KillPlayer()
 		{
-			PlayDyingSound ();
-			Debug.Log ("death animation");
-			yield return new WaitForSecondsRealtime (audioSource.clip.length); //TODO use audio clip length
+            animator.SetTrigger(DEATH_TRIGGER);
+
+            PlayDyingSound ();
+			yield return new WaitForSecondsRealtime (audioSource.clip.length);
+
 			SceneManager.LoadScene (0);
 		}
 
@@ -77,7 +82,7 @@ namespace RPG.Characters
 			if (Time.time - lastHitTime > weaponInUse.GetFireRate())
 			{
 				//TODO make const
-				animator.SetTrigger ("Attack");	
+				animator.SetTrigger (ATTACK_TRIGGER);	
 				enemy.TakeDamage (baseDamage);
 				lastHitTime = Time.time;
 			}

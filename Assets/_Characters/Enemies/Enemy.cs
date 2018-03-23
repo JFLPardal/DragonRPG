@@ -18,6 +18,7 @@ namespace RPG.Characters
 	[SerializeField] float attackRadius = 5f;
 	[SerializeField] float damagePerShot = 2f;
 	[SerializeField] float secondsBetweenShots = 0.5f;
+	[SerializeField] float secondsBetweenShotsVariation = 0.2f;
 	[SerializeField] GameObject projectileToUse;
 	[SerializeField] GameObject projectileSocket;
 	[SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
@@ -47,7 +48,8 @@ namespace RPG.Characters
 		if (distanceToPlayer <= attackRadius && !isAttacking) // if player is within range, chase him
 		{ 
 			isAttacking = true;
-			InvokeRepeating ("FireProjectile", 0f, secondsBetweenShots); //TODO switch to coroutine
+            float randomizeSecondsBetweenShots = secondsBetweenShots + Random.Range(-secondsBetweenShotsVariation, secondsBetweenShotsVariation);
+			InvokeRepeating ("FireProjectile", 0f, randomizeSecondsBetweenShots); //TODO switch to coroutine
 		}
 		//stop firing if player is outside of attack radius
 		if (distanceToPlayer > attackRadius)
