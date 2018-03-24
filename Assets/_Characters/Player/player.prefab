@@ -766,8 +766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 1800
-  m_StationaryTurnSpeed: 900
+  m_MovingTurnSpeed: 1000
+  m_StationaryTurnSpeed: 800
   m_JumpPower: 6
   m_GravityMultiplier: 2
   m_RunCycleLegOffset: 0.2
@@ -801,19 +801,20 @@ MonoBehaviour:
   weaponInUse: {fileID: 11400000, guid: ebfb49c5fe73ec6449d6c97bb543ab2c, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: fd96901fdb497234c9b88c0d3750c942,
     type: 2}
-  damageSound:
+  damageSounds:
   - {fileID: 8300000, guid: f6461796ed4365345b65de2ac4cb69c7, type: 3}
   - {fileID: 8300000, guid: 4b817770f190b244db49cf6c619dd1a6, type: 3}
   - {fileID: 8300000, guid: ee798fa41ad7ab441881802413e8b5ea, type: 3}
   - {fileID: 8300000, guid: 96b79439121dafd49814d2ec34681afc, type: 3}
   - {fileID: 8300000, guid: 10bcb99c11b4cce4ba43986793a908a5, type: 3}
   - {fileID: 8300000, guid: 4e2db754c1bdd64419cf054c6ce4da5d, type: 3}
-  deathSound:
+  deathSounds:
   - {fileID: 8300000, guid: 00dadd2c68a6b194eb57f78825c9f680, type: 3}
   - {fileID: 8300000, guid: fbde1b9e485d79b499047f4296d7252c, type: 3}
   - {fileID: 8300000, guid: ab398e84b9a2eda4cafe8a3d19c756dc, type: 3}
   abilities:
   - {fileID: 11400000, guid: 3cc2d7bfbae60f84d965bf1dd20d78fc, type: 2}
+  - {fileID: 11400000, guid: 370f6965a1408ce4883c002c754fae4b, type: 2}
 --- !u!114 &114768338050603812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -825,7 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9039ac13291cbf944910d04d8526ac00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyBar: {fileID: 0}
+  energyOrb: {fileID: 0}
   maxEnergyPoints: 100
   regenPointsPerSecond: 7
 --- !u!114 &114963636985259232

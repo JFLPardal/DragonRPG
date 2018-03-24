@@ -4535,16 +4535,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: deathSounds.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: damageSounds.Array.size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4239624079763954, guid: 5cd50007ee647934b8f1912c255118e1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 278.3
@@ -4583,56 +4573,6 @@ Prefab:
       value: 
       objectReference: {fileID: 13400000, guid: 52baaeb214519f347a35cf0edfd262ff,
         type: 2}
-    - target: {fileID: 114768338050603812, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: energyBar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: deathSounds.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 00dadd2c68a6b194eb57f78825c9f680, type: 3}
-    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: deathSounds.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: fbde1b9e485d79b499047f4296d7252c, type: 3}
-    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: deathSounds.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: ab398e84b9a2eda4cafe8a3d19c756dc, type: 3}
-    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: damageSounds.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: f6461796ed4365345b65de2ac4cb69c7, type: 3}
-    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: damageSounds.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 4b817770f190b244db49cf6c619dd1a6, type: 3}
-    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: damageSounds.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: ee798fa41ad7ab441881802413e8b5ea, type: 3}
-    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: damageSounds.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: 96b79439121dafd49814d2ec34681afc, type: 3}
-    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: damageSounds.Array.data[4]
-      value: 
-      objectReference: {fileID: 8300000, guid: 10bcb99c11b4cce4ba43986793a908a5, type: 3}
-    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: damageSounds.Array.data[5]
-      value: 
-      objectReference: {fileID: 8300000, guid: 4e2db754c1bdd64419cf054c6ce4da5d, type: 3}
     - target: {fileID: 114768338050603812, guid: 5cd50007ee647934b8f1912c255118e1,
         type: 2}
       propertyPath: energyOrb
