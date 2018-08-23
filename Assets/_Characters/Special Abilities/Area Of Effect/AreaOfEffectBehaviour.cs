@@ -15,24 +15,38 @@ namespace RPG.Characters
 		}
 
 		public void Use(AbilityUseParams useParams)
-		{
-			RaycastHit[] hits = Physics.SphereCastAll (
-				                    transform.position,
-				                    config.GetAbilityRadius (),
-				                    Vector3.up,
-				                    config.GetAbilityRadius ()
-			                    );
+        {
+            DealRadialDamage(useParams);
+            PlayParticleEffect();
+        }
 
-			foreach(RaycastHit hit in hits)
-			{
-				var damageable = hit.collider.gameObject.GetComponent<IDamageable> ();
-				if(damageable != null)
-				{
-					float damageToDealt = useParams.baseDamage + config.GetDamageToEachTarget ();
-					damageable.TakeDamage (damageToDealt);
-				}
-			}
-			print ("AoE activated");
-		}
-	}
+        private void PlayParticleEffect()
+        {
+            var prefab = Instantiate(config.GetParticlePrefab(), transform.position, Quaternion.identity);
+            ParticleSystem aoeParticleSystem = prefab.GetComponent<ParticleSystem>();
+            aoeParticleSystem.Play();
+            Destroy(prefab, aoeParticleSystem.main.duration);
+        }
+
+        private void DealRadialDamage(AbilityUseParams useParams)
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(
+                                                transform.position,
+                                                config.GetAbilityRadius(),
+                                                Vector3.up,
+                                                config.GetAbilityRadius()
+                                            );
+
+            foreach (RaycastHit hit in hits)
+            {
+                var damageable = hit.collider.gameObject.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    float damageToDealt = useParams.baseDamage + config.GetDamageToEachTarget();
+                    damageable.TakeDamage(damageToDealt);
+                }
+            }
+            print("AoE activated");
+        }
+    }
 }

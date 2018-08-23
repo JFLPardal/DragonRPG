@@ -4,4 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Levels/villagePrototype.unity
+    guid: d7f1a08a4bccd7e4c9756e031973c314
+  m_configObjects: {}
