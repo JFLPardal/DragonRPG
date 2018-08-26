@@ -24,9 +24,12 @@ namespace RPG.Characters
 		[SerializeField] AnimatorOverrideController animatorOverrideController = null;
 		[SerializeField] AudioClip[] damageSounds;
 		[SerializeField] AudioClip[] deathSounds;
+		[Range(0.1f, 1f)] [SerializeField] float criticalHitChance = .1f;
+		[SerializeField] float criticalHitMultiplier = 1.25f;
+        [SerializeField] ParticleSystem critAttackParticles = null;
 
-		//temporarily serialized for dubbing
-		[SerializeField] SpecialAbility[] abilities;
+        //temporarily serialized for dubbing
+        [SerializeField] AbilityConfig[] abilities;
 
         const string DEATH_TRIGGER = "Death";
         const string ATTACK_TRIGGER = "Attack";
@@ -78,15 +81,20 @@ namespace RPG.Characters
             }
         }
 
-        public void AdjustHealth(float changeAmount)
+        public void TakeDamage(float changeAmount)
 		{
-			bool playerDies = (currentHealthPoints - changeAmount <= 0);
-			ReduceHealth (changeAmount);
-			if (playerDies) 
+            currentHealthPoints = Mathf.Clamp(currentHealthPoints - changeAmount, 0f, maxHealthPoints);
+            audioSource.PlayOneShot(damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)]);
+            if (currentHealthPoints <= 0) 
 			{
 				StartCoroutine (KillPlayer ());
 			}
 		}
+
+        public void Heal(float healAmountInPoints)
+        {
+            currentHealthPoints = Mathf.Clamp(currentHealthPoints + healAmountInPoints, 0f, maxHealthPoints);
+        }
 
 		IEnumerator KillPlayer()
 		{
@@ -97,24 +105,32 @@ namespace RPG.Characters
 
 			SceneManager.LoadScene (0);
 		}
-
-		private void ReduceHealth(float damage)
-		{
-			currentHealthPoints = Mathf.Clamp (currentHealthPoints - damage, 0f, maxHealthPoints);
-			audioSource.PlayOneShot (damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)]);
-			//play animation
-		}
-
+       
 		private void AttackTarget()
 		{
 			if (Time.time - lastHitTime > weaponInUse.GetFireRate())
 			{
 				//TODO make const
 				animator.SetTrigger (ATTACK_TRIGGER);	
-				enemy.AdjustHealth (baseDamage);
+				enemy.TakeDamage (CalculateDamage());
 				lastHitTime = Time.time;
 			}
 		}
+
+        private float CalculateDamage()
+        {
+            bool isCriticalHit = UnityEngine.Random.Range(0f, 1f) < criticalHitChance;
+            float damageBeforeCritical = baseDamage + weaponInUse.GetAdditionalDamage();
+            if (isCriticalHit)
+            {
+                critAttackParticles.Play();
+                return damageBeforeCritical * criticalHitMultiplier;
+            }
+            else
+            {
+                return damageBeforeCritical;
+            }
+        }
 
 		private bool IsTargetInRange(GameObject target)
 		{

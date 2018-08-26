@@ -17,11 +17,12 @@ namespace RPG.Characters
 		}
 	}
 
-	public abstract class SpecialAbility : ScriptableObject 
+	public abstract class AbilityConfig : ScriptableObject 
 	{
 		[Header("Special Ability General")] 
 		[SerializeField] float energyCost;
 		[SerializeField] GameObject particlePrefab = null;
+        [SerializeField] AudioClip sound = null;
 
 		protected ISpecialAbility behaviour; // only children can set this field
 
@@ -40,6 +41,11 @@ namespace RPG.Characters
         public GameObject GetParticlePrefab()
         {
             return particlePrefab;
+        }
+
+        public AudioClip GetAudioClip()
+        {
+            return sound;
         }
 	}
 

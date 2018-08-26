@@ -13531,17 +13531,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114768338050603812, guid: 5cd50007ee647934b8f1912c255118e1,
-        type: 2}
-      propertyPath: energyOrb
-      value: 
-      objectReference: {fileID: 433045514}
     - target: {fileID: 136315275099854372, guid: 5cd50007ee647934b8f1912c255118e1,
         type: 2}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: 52baaeb214519f347a35cf0edfd262ff,
         type: 2}
+    - target: {fileID: 114768338050603812, guid: 5cd50007ee647934b8f1912c255118e1,
+        type: 2}
+      propertyPath: energyOrb
+      value: 
+      objectReference: {fileID: 433045514}
+    - target: {fileID: 114694047775799054, guid: 5cd50007ee647934b8f1912c255118e1,
+        type: 2}
+      propertyPath: criticalHitChance
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5cd50007ee647934b8f1912c255118e1, type: 2}
   m_IsPrefabParent: 0

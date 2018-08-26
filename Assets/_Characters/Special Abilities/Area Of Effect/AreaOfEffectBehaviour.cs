@@ -8,8 +8,14 @@ namespace RPG.Characters
 	public class AreaOfEffectBehaviour : MonoBehaviour , ISpecialAbility
 	{
 		AreaOfEffectConfig config;
+        AudioSource audioSource = null;
 
-		public void SetConfig(AreaOfEffectConfig configToSet)
+        private void Start()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        public void SetConfig(AreaOfEffectConfig configToSet)
 		{
 			this.config = configToSet;
 		}
@@ -18,6 +24,8 @@ namespace RPG.Characters
         {
             DealRadialDamage(useParams);
             PlayParticleEffect();
+            audioSource.clip = config.GetAudioClip();
+            audioSource.Play();
         }
 
         private void PlayParticleEffect()
@@ -44,10 +52,9 @@ namespace RPG.Characters
                 if (damageable != null && !hitPlayer)
                 {
                     float damageToDealt = useParams.baseDamage + config.GetDamageToEachTarget();
-                    damageable.AdjustHealth(damageToDealt);
+                    damageable.TakeDamage(damageToDealt);
                 }
             }
-            print("AoE activated");
         }
     }
 }

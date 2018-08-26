@@ -13,6 +13,7 @@ namespace RPG.Weapons
 		[SerializeField] AnimationClip attackAnimation;
 		[SerializeField] float minSecondsBetweenHits = 0.5f;
 		[SerializeField] float maxAttackRange = 2f;
+		[SerializeField] float additionalDamage = 10f;
 
 		public GameObject GetWeaponPrefab()
 		{
@@ -34,6 +35,11 @@ namespace RPG.Weapons
 		{
 			return maxAttackRange;
 		}
+
+        public float GetAdditionalDamage()
+        {
+            return additionalDamage;
+        }
 
 		// so that asset packs cannot cause crashes
 		private void RemoveAnimationEvents()

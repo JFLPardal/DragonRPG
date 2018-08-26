@@ -8,8 +8,14 @@ namespace RPG.Characters
 	public class PowerAttackBehaviour : MonoBehaviour, ISpecialAbility
 	{
 		PowerAttackConfig config;
+        AudioSource audioSource = null;
 
-		public void SetConfig(PowerAttackConfig configToSet)
+        private void Start()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        public void SetConfig(PowerAttackConfig configToSet)
 		{
 			this.config = configToSet;
 		}
@@ -17,10 +23,12 @@ namespace RPG.Characters
 		public void Use(AbilityUseParams useParams)
         {
             DealDamage(useParams);
-            PlayParticleEffects();
+            PlayParticleEffect();
+            audioSource.clip = config.GetAudioClip();
+            audioSource.Play();
         }
 
-        private void PlayParticleEffects()
+        private void PlayParticleEffect()
         {
             var prefab = Instantiate(config.GetParticlePrefab(), transform.position, Quaternion.identity);
             ParticleSystem powerAttackParticleSystem = prefab.GetComponent<ParticleSystem>();
@@ -31,7 +39,7 @@ namespace RPG.Characters
         private void DealDamage(AbilityUseParams useParams)
         {
             float damageToDeal = useParams.baseDamage + config.GetExtraDamage();
-            useParams.target.AdjustHealth(damageToDeal);
+            useParams.target.TakeDamage(damageToDeal);
         }
     }
 }
