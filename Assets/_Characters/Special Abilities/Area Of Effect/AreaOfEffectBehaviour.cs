@@ -5,45 +5,22 @@ using RPG.Core;
 
 namespace RPG.Characters
 {
-	public class AreaOfEffectBehaviour : MonoBehaviour , ISpecialAbility
+	public class AreaOfEffectBehaviour : AbilityBehaviour
 	{
-		AreaOfEffectConfig config;
-        AudioSource audioSource = null;
-
-        private void Start()
+      	public override void Use(AbilityUseParams useParams)
         {
-            audioSource = GetComponent<AudioSource>();
-        }
-
-        public void SetConfig(AreaOfEffectConfig configToSet)
-		{
-			this.config = configToSet;
-		}
-
-		public void Use(AbilityUseParams useParams)
-        {
-            DealRadialDamage(useParams);
+            PlayAbilitySound();
             PlayParticleEffect();
-            audioSource.clip = config.GetAudioClip();
-            audioSource.Play();
+            DealRadialDamage(useParams);
         }
-
-        private void PlayParticleEffect()
-        {
-            var particlePrefab = config.GetParticlePrefab();
-            var prefab = Instantiate(particlePrefab, transform.position, particlePrefab.transform.rotation);
-            ParticleSystem aoeParticleSystem = prefab.GetComponent<ParticleSystem>();
-            aoeParticleSystem.Play();
-            Destroy(prefab, aoeParticleSystem.main.duration);
-        }
-
+        
         private void DealRadialDamage(AbilityUseParams useParams)
         {
             RaycastHit[] hits = Physics.SphereCastAll(
                                                 transform.position,
-                                                config.GetAbilityRadius(),
+                                                (config as AreaOfEffectConfig).GetAbilityRadius(),
                                                 Vector3.up,
-                                                config.GetAbilityRadius()
+                                                (config as AreaOfEffectConfig).GetAbilityRadius()
                                             );
 
             foreach (RaycastHit hit in hits)
@@ -52,7 +29,7 @@ namespace RPG.Characters
                 bool hitPlayer = hit.collider.gameObject.GetComponent<Player>();
                 if (damageable != null && !hitPlayer)
                 {
-                    float damageToDealt = useParams.baseDamage + config.GetDamageToEachTarget();
+                    float damageToDealt = useParams.baseDamage + (config as AreaOfEffectConfig).GetDamageToEachTarget();
                     damageable.TakeDamage(damageToDealt);
                 }
             }

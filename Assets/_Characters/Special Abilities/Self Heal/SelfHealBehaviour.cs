@@ -6,45 +6,25 @@ using RPG.Core;
 namespace RPG.Characters
 {
 
-    public class SelfHealBehaviour : MonoBehaviour, ISpecialAbility
+    public class SelfHealBehaviour : AbilityBehaviour
     {
-        SelfHealConfig config = null;
         Player player = null;
-        AudioSource audioSource = null;
 
         private void Start()
         {
             player = GetComponent<Player>();
-            audioSource = GetComponent<AudioSource>();
         }
 
-        public void SetConfig(SelfHealConfig configToSet)
+        public override void Use(AbilityUseParams useParams)
         {
-            this.config = configToSet;
-        }
-
-        public void Use(AbilityUseParams useParams)
-        {
-            HealSelf(useParams);
+            PlayAbilitySound();
             PlayParticleEffect();
-            audioSource.clip = config.GetAudioClip();
-            audioSource.Play();
+            HealSelf(useParams);
         }
 
         private void HealSelf(AbilityUseParams useParams)
         {
-            player.Heal(config.GetHealingAmount());
-        }
-
-
-        private void PlayParticleEffect()
-        {
-            var particlePrefab = config.GetParticlePrefab();
-            var prefab = Instantiate(particlePrefab, transform.position, particlePrefab.transform.rotation);
-            prefab.transform.parent = transform;
-            ParticleSystem powerAttackParticleSystem = prefab.GetComponent<ParticleSystem>();
-            powerAttackParticleSystem.Play();
-            Destroy(prefab, powerAttackParticleSystem.main.duration);
+            player.Heal((config as SelfHealConfig).GetHealingAmount());
         }
     }
 
