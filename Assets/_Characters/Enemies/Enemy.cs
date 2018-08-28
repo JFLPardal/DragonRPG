@@ -24,14 +24,12 @@ namespace RPG.Characters
 
 	float currentHealthPoints;
 	bool isAttacking = false;
-	AICharacterControl aiCharacterControl = null;
 	Player player = null;
 
 	void Start()
 	{
 		currentHealthPoints = maxHealthPoints;
 		player = FindObjectOfType<Player>();
-		aiCharacterControl = GetComponent<AICharacterControl> ();
 	}
 
 	void Update()
@@ -56,13 +54,18 @@ namespace RPG.Characters
 			isAttacking = false;
 			CancelInvoke ();
 		}
-		//chase radius
-		if (distanceToPlayer < chaseRadius) // if player is within range, chase him
-			aiCharacterControl.SetTarget (player.transform);
-		else //stay in position
-			aiCharacterControl.SetTarget(this.transform);
-			
-	}
+            //chase radius
+            if (distanceToPlayer < chaseRadius) // if player is within range, chase him
+            {
+                //aiCharacterControl.SetTarget (player.transform);
+            }
+            else //stay in position
+            {
+                //aiCharacterControl.SetTarget(this.transform);
+            }
+
+
+        }
 
 	//TODO separate out Character firing logic
 	void FireProjectile()
