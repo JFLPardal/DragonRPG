@@ -4,7 +4,6 @@ using UnityEngine;
 
 
 //TODO check if dependecy makes sense
-using RPG.Weapons;
 using RPG.Core;
 
 namespace RPG.Characters

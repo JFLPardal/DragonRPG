@@ -43,7 +43,6 @@ namespace RPG.Characters
         {
             var abilitySound = config.GetRandomAbilityClip();
             var audioSource = GetComponent<AudioSource>();
-            audioSource.volume = .5f;
             audioSource.PlayOneShot(abilitySound);
         }
     }
