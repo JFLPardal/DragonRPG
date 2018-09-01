@@ -61,6 +61,11 @@ namespace RPG.Characters
             UpdateAnimator();
         }
 
+        public void Kill()
+        {
+            // signal character died
+        }
+
         void OnMouseOverPotentiallyWalkable(Vector3 destination)
 		{
 			if(Input.GetMouseButton(0))

@@ -24,7 +24,8 @@ namespace RPG.Characters
 
         private void HealSelf(AbilityUseParams useParams)
         {
-            player.Heal((config as SelfHealConfig).GetHealingAmount());
+            var playerHealth = player.GetComponent<HealthSystem>();
+            playerHealth.Heal((config as SelfHealConfig).GetHealingAmount());
         }
     }
 
