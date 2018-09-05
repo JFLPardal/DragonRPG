@@ -5,7 +5,6 @@ using RPG.Core;
 
 namespace RPG.Characters
 {
-
     public class SelfHealBehaviour : AbilityBehaviour
     {
         Player player = null;
@@ -15,14 +14,14 @@ namespace RPG.Characters
             player = GetComponent<Player>();
         }
 
-        public override void Use(AbilityUseParams useParams)
+        public override void Use(GameObject target)
         {
             PlayAbilitySound();
             PlayParticleEffect();
-            HealSelf(useParams);
+            HealSelf();
         }
 
-        private void HealSelf(AbilityUseParams useParams)
+        private void HealSelf()
         {
             var playerHealth = player.GetComponent<HealthSystem>();
             playerHealth.Heal((config as SelfHealConfig).GetHealingAmount());

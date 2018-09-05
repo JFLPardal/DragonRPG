@@ -7,14 +7,14 @@ namespace RPG.Characters
 {
 	public class AreaOfEffectBehaviour : AbilityBehaviour
 	{
-      	public override void Use(AbilityUseParams useParams)
+      	public override void Use(GameObject target)
         {
             PlayAbilitySound();
             PlayParticleEffect();
-            DealRadialDamage(useParams);
+            DealRadialDamage();
         }
         
-        private void DealRadialDamage(AbilityUseParams useParams)
+        private void DealRadialDamage()
         {
             RaycastHit[] hits = Physics.SphereCastAll(
                                                 transform.position,
@@ -25,12 +25,12 @@ namespace RPG.Characters
 
             foreach (RaycastHit hit in hits)
             {
-                var damageable = hit.collider.gameObject.GetComponent<IDamageable>();
+                var enemy = hit.collider.gameObject.GetComponent<HealthSystem>();
                 bool hitPlayer = hit.collider.gameObject.GetComponent<Player>();
-                if (damageable != null && !hitPlayer)
+                if (enemy != null && !hitPlayer)
                 {
-                    float damageToDealt = useParams.baseDamage + (config as AreaOfEffectConfig).GetDamageToEachTarget();
-                    damageable.TakeDamage(damageToDealt);
+                    float damageToDealt = (config as AreaOfEffectConfig).GetDamageToEachTarget();
+                    enemy.TakeDamage(damageToDealt);
                 }
             }
         }

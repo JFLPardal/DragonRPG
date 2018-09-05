@@ -882,6 +882,7 @@ GameObject:
   - component: {fileID: 114164765922678768}
   - component: {fileID: 114169527080634238}
   - component: {fileID: 114367209573758310}
+  - component: {fileID: 114219873218580076}
   m_Layer: 11
   m_Name: player
   m_TagString: Player
@@ -2110,12 +2111,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b190b30d069afb74e8e7e17af29f78bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 2000
   baseDamage: 80
   currentWeaponConfig: {fileID: 11400000, guid: ebfb49c5fe73ec6449d6c97bb543ab2c,
     type: 2}
   animatorOverrideController: {fileID: 22100000, guid: fd96901fdb497234c9b88c0d3750c942,
     type: 2}
+  criticalHitChance: 0.1
+  criticalHitMultiplier: 1.5
+  critAttackParticles: {fileID: 198677215832505402}
+--- !u!114 &114219873218580076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1965724856813594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87588bc41da43874ea39764370bb727f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 100
+  healthBar: {fileID: 0}
   damageSounds:
   - {fileID: 8300000, guid: f6461796ed4365345b65de2ac4cb69c7, type: 3}
   - {fileID: 8300000, guid: 4b817770f190b244db49cf6c619dd1a6, type: 3}
@@ -2127,13 +2143,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 00dadd2c68a6b194eb57f78825c9f680, type: 3}
   - {fileID: 8300000, guid: fbde1b9e485d79b499047f4296d7252c, type: 3}
   - {fileID: 8300000, guid: ab398e84b9a2eda4cafe8a3d19c756dc, type: 3}
-  criticalHitChance: 0.1
-  criticalHitMultiplier: 1.5
-  critAttackParticles: {fileID: 198677215832505402}
-  abilities:
-  - {fileID: 11400000, guid: c8ef729efde5524428ac78dfd86dc2fb, type: 2}
-  - {fileID: 11400000, guid: 370f6965a1408ce4883c002c754fae4b, type: 2}
-  - {fileID: 11400000, guid: 8a70dc048bde8de418a08c050acd6275, type: 2}
+  enemyVanishesAfterSeconds: 2
 --- !u!114 &114367209573758310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2145,7 +2155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9039ac13291cbf944910d04d8526ac00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyOrb: {fileID: 0}
+  abilities:
+  - {fileID: 11400000, guid: c8ef729efde5524428ac78dfd86dc2fb, type: 2}
+  - {fileID: 11400000, guid: 370f6965a1408ce4883c002c754fae4b, type: 2}
+  - {fileID: 11400000, guid: 8a70dc048bde8de418a08c050acd6275, type: 2}
+  energyBar: {fileID: 0}
   maxEnergyPoints: 100
   regenPointsPerSecond: 7
 --- !u!114 &114476137949619596
