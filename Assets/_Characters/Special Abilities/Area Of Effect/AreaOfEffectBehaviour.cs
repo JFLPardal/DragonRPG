@@ -26,7 +26,7 @@ namespace RPG.Characters
             foreach (RaycastHit hit in hits)
             {
                 var enemy = hit.collider.gameObject.GetComponent<HealthSystem>();
-                bool hitPlayer = hit.collider.gameObject.GetComponent<Player>();
+                bool hitPlayer = hit.collider.gameObject.GetComponent<PlayerMovement>();
                 if (enemy != null && !hitPlayer)
                 {
                     float damageToDealt = (config as AreaOfEffectConfig).GetDamageToEachTarget();

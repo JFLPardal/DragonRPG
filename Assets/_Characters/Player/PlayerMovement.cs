@@ -1,19 +1,12 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.SceneManagement;
 
-//TODO consider getting rid of this dependency
 using RPG.CameraUI;
-using RPG.Core;
 using System;
-//***********
-
 
 namespace RPG.Characters
 {
-	[RequireComponent(typeof(AudioSource))]
-	public class Player : MonoBehaviour 
+	public class PlayerMovement : MonoBehaviour 
 	{
 		//TODO change this way of accessing the layer
 		[SerializeField] float baseDamage = 10f;
@@ -30,6 +23,7 @@ namespace RPG.Characters
         Enemy enemy;
 		Animator animator;
         SpecialAbilities abilities;
+        Character character;
 		
 		CameraRaycaster cameraRaycaster;
 		float lastHitTime = 0;
@@ -37,19 +31,44 @@ namespace RPG.Characters
 		void Start()
 		{
             abilities = GetComponent<SpecialAbilities>();
+            character = GetComponent<Character>();
 
-            RegisterForMouseClick ();
+            RegisterForMouseEvent ();
 			PutWeaponInHand (currentWeaponConfig);
 			SetAttackAnimation ();
 		}
+        
+        private void RegisterForMouseEvent()
+        {
+            cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+            cameraRaycaster.notifyMouseOverEnemyObservers += OnMouseOverEnemy;
+            cameraRaycaster.notifyMouseOverPotentiallyWalkableObservers += OnMouseOverPotentiallyWalkable;
+        }
+        
+        void OnMouseOverEnemy(Enemy enemyToSet)
+        {
+            enemy = enemyToSet;
+            if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
+            {
+                AttackTarget();
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                abilities.AttemptSpecialAbility(0);
+            }
+        }
+
+        private void OnMouseOverPotentiallyWalkable(Vector3 destination)
+        {
+            if(Input.GetMouseButton(0))
+            {
+                character.SetDestination(destination);
+            }
+        }
 
         private void Update()
         {
-            var healthAsPercentage = GetComponent<HealthSystem>().healthAsPercentage;
-            if(healthAsPercentage > Mathf.Epsilon)
-            {
-                ScanForAbilityKeyDown();
-            }
+            ScanForAbilityKeyDown();
         }
 
         private void ScanForAbilityKeyDown()
@@ -120,26 +139,6 @@ namespace RPG.Characters
 			Assert.IsFalse (numberOfDominantsHands > 1, "Multiple dominant hand scripts on player, remove one");
 			return dominantHands [0].gameObject;
 
-		}
-
-		void OnMouseOverEnemy(Enemy enemyToSet)
-		{
-            enemy = enemyToSet;
-			if(Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
-			{
-				AttackTarget ();
-			}
-			else if(Input.GetMouseButtonDown(1))
-			{
-				abilities.AttemptSpecialAbility (0);
-			}
-		}
-
-		private void RegisterForMouseClick ()
-		{
-			cameraRaycaster = FindObjectOfType<CameraRaycaster> ();
-			cameraRaycaster.notifyMouseOverEnemyObservers += OnMouseOverEnemy;
-			//subscribe to the click observer, that tells us where the player clicked, in the world
 		}
 	}
 }
