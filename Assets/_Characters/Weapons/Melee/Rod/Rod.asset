@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b5d9cd8677f48348bcb532b8317ef64, type: 3}
-  m_Name: Rod
+  m_Name: rod
   m_EditorClassIdentifier: 
   gripTransform: {fileID: 4328051535300320, guid: 3e76ae1ffea45814aba027296e777568,
     type: 2}
@@ -18,3 +18,4 @@ MonoBehaviour:
   attackAnimation: {fileID: 7400000, guid: fcc82476d966e864da60dc606a6adcb0, type: 3}
   minSecondsBetweenHits: 0.5
   maxAttackRange: 2
+  additionalDamage: 10

@@ -55,8 +55,8 @@ namespace RPG.Characters
         {
             var capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
             capsuleCollider.center = colliderCenter;
-            capsuleCollider.radius = radius;
-            capsuleCollider.height = height;
+            capsuleCollider.radius = colliderRadius;
+            capsuleCollider.height = colliderHeight;
 
             navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
             navMeshAgent.speed = speed;
@@ -97,6 +97,11 @@ namespace RPG.Characters
         public void SetDestination(Vector3 worldPos)
         {
             navMeshAgent.destination = worldPos;
+        }
+
+        public AnimatorOverrideController GetOverrideController()
+        {
+            return animatorOverrideController;
         }
 
         void Move(Vector3 move)

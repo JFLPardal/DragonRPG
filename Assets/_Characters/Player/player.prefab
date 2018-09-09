@@ -464,6 +464,7 @@ GameObject:
   - component: {fileID: 114911017517614042}
   - component: {fileID: 114964045026672264}
   - component: {fileID: 114660701048445434}
+  - component: {fileID: 114395885645298346}
   m_Layer: 11
   m_Name: player
   m_TagString: Player
@@ -1021,7 +1022,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1474365325886270}
   m_LocalRotation: {x: -0, y: -0.86173147, z: -0, w: -0.50736463}
-  m_LocalPosition: {x: 278.3, y: 0.27, z: 177.84}
+  m_LocalPosition: {x: 284.11, y: 0.27, z: 175.56}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 4732139865745246}
@@ -1950,6 +1951,20 @@ MonoBehaviour:
   stationaryTurnSpeed: 180
   moveThreshold: 1
   spatialBlend: 0.5
+--- !u!114 &114395885645298346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1474365325886270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a28527bf90856c4989c511769748b03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  currentWeaponConfig: {fileID: 11400000, guid: 7e7786d2a7a5b6c4a9acd73aba6044db,
+    type: 2}
 --- !u!114 &114660701048445434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1997,11 +2012,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b190b30d069afb74e8e7e17af29f78bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 80
-  currentWeaponConfig: {fileID: 11400000, guid: ebfb49c5fe73ec6449d6c97bb543ab2c,
-    type: 2}
-  animatorOverrideController: {fileID: 22100000, guid: fd96901fdb497234c9b88c0d3750c942,
-    type: 2}
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.5
   critAttackParticles: {fileID: 198604290121196762}
