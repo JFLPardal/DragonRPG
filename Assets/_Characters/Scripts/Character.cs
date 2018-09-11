@@ -104,6 +104,11 @@ namespace RPG.Characters
             return animatorOverrideController;
         }
 
+        public float GetAnimationSpeedMultiplier()
+        {
+            return animator.speed;
+        }
+
         void Move(Vector3 move)
         {
             SetForwardAndTurn(move);

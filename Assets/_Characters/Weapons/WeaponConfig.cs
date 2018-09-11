@@ -26,7 +26,7 @@ namespace RPG.Characters
 			return attackAnimation;
 		}
 
-		public float GetFireRate()
+		public float GetMinTimeBetweenHitsInSeconds()
 		{
 			return minSecondsBetweenHits;
 		}
