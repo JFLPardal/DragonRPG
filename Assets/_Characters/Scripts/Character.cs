@@ -99,7 +99,7 @@ namespace RPG.Characters
             navMeshAgent.destination = worldPos;
         }
 
-        public AnimatorOverrideController GetOverrideController()
+        public AnimatorOverrideController GetAnimatorOverrideController()
         {
             return animatorOverrideController;
         }

@@ -16,5 +16,5 @@ MonoBehaviour:
     type: 2}
   abilitySounds:
   - {fileID: 8300000, guid: f08ddff5f0030054e8720311d93c22bb, type: 3}
-  - {fileID: 8300000, guid: 4b6b8424d1e292148b0981c81c1d20d2, type: 3}
+  abilityAnimation: {fileID: 7400000, guid: 053ec18f067de0a4c9650802e1995cb6, type: 3}
   hpToRecover: 200

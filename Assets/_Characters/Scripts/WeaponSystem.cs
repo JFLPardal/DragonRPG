@@ -77,7 +77,7 @@ namespace RPG.Characters
             target = targetToAttack;
             StartCoroutine(AttackTargetRepeatedly());
         }
-
+        
         IEnumerator AttackTargetRepeatedly()
         {
             bool isAttackerAlive = GetComponent<HealthSystem>().healthAsPercentage >= Mathf.Epsilon;
@@ -102,7 +102,7 @@ namespace RPG.Characters
         {
             transform.LookAt(target.transform);
             animator.SetTrigger(ATTACK_TRIGGER);
-            float damageDelay = 1f; // todo get from weapon
+            float damageDelay = currentWeaponConfig.GetDamageDelay();
             SetAttackAnimation();
             StartCoroutine(DamageAfterDelay(damageDelay));
         }
@@ -120,14 +120,14 @@ namespace RPG.Characters
 
         private void SetAttackAnimation()
         {
-            if(!character.GetOverrideController())
+            if(!character.GetAnimatorOverrideController())
             {
                 Debug.Break();
                 Debug.LogAssertion("Provide " + gameObject + " with an animator override controller.");
             }
             else
             {
-                var animatorOverrideController = character.GetOverrideController();
+                var animatorOverrideController = character.GetAnimatorOverrideController();
                 animator.runtimeAnimatorController = animatorOverrideController;
                 animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.GetAnimClip();
             }

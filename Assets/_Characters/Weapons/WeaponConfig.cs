@@ -14,6 +14,7 @@ namespace RPG.Characters
 		[SerializeField] float minSecondsBetweenHits = 0.5f;
 		[SerializeField] float maxAttackRange = 2f;
 		[SerializeField] float additionalDamage = 10f;
+		[SerializeField] float damageDelay = .5f;
 
 		public GameObject GetWeaponPrefab()
 		{
@@ -39,6 +40,11 @@ namespace RPG.Characters
         public float GetAdditionalDamage()
         {
             return additionalDamage;
+        }
+
+        public float GetDamageDelay()
+        {
+            return damageDelay;
         }
 
 		// so that asset packs cannot cause crashes

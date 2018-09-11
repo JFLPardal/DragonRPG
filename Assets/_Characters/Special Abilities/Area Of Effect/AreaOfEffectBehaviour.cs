@@ -10,6 +10,7 @@ namespace RPG.Characters
       	public override void Use(GameObject target)
         {
             PlayAbilitySound();
+            PlayAbilityAnimation();
             PlayParticleEffect();
             DealRadialDamage();
         }
@@ -26,7 +27,7 @@ namespace RPG.Characters
             foreach (RaycastHit hit in hits)
             {
                 var enemy = hit.collider.gameObject.GetComponent<HealthSystem>();
-                bool hitPlayer = hit.collider.gameObject.GetComponent<PlayerMovement>();
+                bool hitPlayer = hit.collider.gameObject.GetComponent<PlayerControl>();
                 if (enemy != null && !hitPlayer)
                 {
                     float damageToDealt = (config as AreaOfEffectConfig).GetDamageToEachTarget();

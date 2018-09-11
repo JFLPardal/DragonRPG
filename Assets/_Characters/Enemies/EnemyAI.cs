@@ -15,7 +15,7 @@ namespace RPG.Characters
         [SerializeField] float waypointStoppingDistance = 1.5f;
         [SerializeField] float timeToWaitInWaypointInSeconds = 1f;
 
-        PlayerMovement player;
+        PlayerControl player;
         Character character;
         int nextWaypointIndex;
         float currentWeaponRange;
@@ -26,7 +26,7 @@ namespace RPG.Characters
 
         void Start()
 	    {
-		    player = FindObjectOfType<PlayerMovement>();
+		    player = FindObjectOfType<PlayerControl>();
             character = GetComponent<Character>();
         }
 
@@ -50,14 +50,14 @@ namespace RPG.Characters
             {
                 StopAllCoroutines();
                 state = State.attacking;
-                // attack
+                weaponSystem.AttackTarget(player.gameObject);
             }
         }
 
         IEnumerator Patrol()
         {
             state = State.patrolling;
-            while (true)
+            while (patrolRoute != null)
             {
                 Vector3 nextWaypointPosition = patrolRoute.transform.GetChild(nextWaypointIndex).position;
                 character.SetDestination(nextWaypointPosition);
