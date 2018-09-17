@@ -52,8 +52,14 @@ namespace RPG.Characters
 
             if(isCharacterDead || isTargetOutOfRange || isTargetDead)
             {
-                StopAllCoroutines();
+                StopAttacking();
             }
+        }
+
+        public void StopAttacking()
+        {
+            animator.StopPlayback();
+            StopAllCoroutines();
         }
 
         public void PutWeaponInHand(WeaponConfig weaponConfig)

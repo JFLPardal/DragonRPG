@@ -1946,9 +1946,9 @@ MonoBehaviour:
   height: 1.43
   stoppingDistance: 1.5
   moveSpeedMultiplier: 1.5
-  movingTurnSpeed: 360
+  movingTurnSpeed: 700
   animationSpeedMultiplier: 1.5
-  stationaryTurnSpeed: 180
+  stationaryTurnSpeed: 500
   moveThreshold: 1
   spatialBlend: 0.5
 --- !u!114 &114395885645298346

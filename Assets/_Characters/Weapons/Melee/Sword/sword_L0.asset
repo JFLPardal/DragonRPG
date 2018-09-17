@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5d9cd8677f48348bcb532b8317ef64, type: 3}
+  m_Name: sword_L0
+  m_EditorClassIdentifier: 
+  gripTransform: {fileID: 4328051535300320, guid: 1b4ea8b9a22b958478d7c238695f12b0,
+    type: 2}
+  weaponPrefab: {fileID: 1277290872445230, guid: 0982ce6c23f616d4bae4c222799510a6,
+    type: 2}
+  attackAnimation: {fileID: 7400000, guid: 65ab56ec63abae340b7646d2ed24c864, type: 3}
+  minSecondsBetweenHits: 0.5
+  maxAttackRange: 2
+  additionalDamage: 0
+  damageDelay: 0.5
