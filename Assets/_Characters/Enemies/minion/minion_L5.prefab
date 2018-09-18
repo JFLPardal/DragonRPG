@@ -1332,7 +1332,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1211484746945560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 289.1438, y: 0.034, z: 180.379}
+  m_LocalPosition: {x: 289.58, y: 0.034, z: 188.39}
   m_LocalScale: {x: 0.7, y: 0.8, z: 0.7}
   m_Children:
   - {fileID: 4399478960564674}
@@ -1826,7 +1826,7 @@ MonoBehaviour:
     type: 2}
   avatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
   colliderCenter: {x: 0, y: 1.1, z: 0}
-  colliderRadius: 0.6
+  colliderRadius: 1
   colliderHeight: 2
   speed: 1
   angularSpeed: 0

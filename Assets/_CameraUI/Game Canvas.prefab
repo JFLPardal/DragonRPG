@@ -158,7 +158,6 @@ GameObject:
   - component: {fileID: 224782669841747208}
   - component: {fileID: 222951629754944038}
   - component: {fileID: 114319970553278520}
-  - component: {fileID: 114709087980736770}
   m_Layer: 5
   m_Name: orb left
   m_TagString: Untagged
@@ -369,7 +368,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 1
+  m_FillAmount: 0.5
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!114 &114380493352756286
@@ -432,17 +431,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 2
---- !u!114 &114709087980736770
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1773510929770874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e94587b07b71f154f861d927f993fe9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114721597021991624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -488,7 +476,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 1
+  m_FillAmount: 0.42
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!114 &114895714210128890
@@ -741,7 +729,7 @@ RectTransform:
   m_GameObject: {fileID: 1146700617253966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 224082597853508144}
   - {fileID: 224830533006893286}

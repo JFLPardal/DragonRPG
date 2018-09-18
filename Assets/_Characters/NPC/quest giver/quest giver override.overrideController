@@ -5,8 +5,8 @@ AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: soldier override
+  m_Name: quest giver override
   m_Controller: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 0b2514f573eb7e642a11282afe6d276e, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 65ab56ec63abae340b7646d2ed24c864, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 053ec18f067de0a4c9650802e1995cb6, type: 3}

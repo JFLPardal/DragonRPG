@@ -81,6 +81,7 @@ namespace RPG.Characters
         public void AttackTarget(GameObject targetToAttack)
         {
             target = targetToAttack;
+            gameObject.transform.Rotate((gameObject.transform.position - targetToAttack.transform.position)); 
             StartCoroutine(AttackTargetRepeatedly());
         }
         
@@ -91,8 +92,9 @@ namespace RPG.Characters
 
             while(isAttackerAlive && isTargetAlive)
             {
-                float timeBetweenAttacksInSeconds = currentWeaponConfig.GetMinTimeBetweenHitsInSeconds();
-                float timeToWait = timeBetweenAttacksInSeconds * character.GetAnimationSpeedMultiplier();
+                var animationClip = currentWeaponConfig.GetAnimClip();
+                float animationClipTime = animationClip.length / character.GetAnimationSpeedMultiplier();
+                float timeToWait = animationClipTime + currentWeaponConfig.GetTimeBetweenAnimationCycles();
 
                 bool isTimeToAttackAgain = Time.time - lastHitTime > timeToWait;
                 if(isTimeToAttackAgain)
@@ -143,8 +145,8 @@ namespace RPG.Characters
         {
             var dominantHands = GetComponentsInChildren<DominantHand>();
             int numberOfDominantsHands = dominantHands.Length;
-            Assert.AreNotEqual(numberOfDominantsHands, 0, "No Dominant Hands Found");
-            Assert.IsFalse(numberOfDominantsHands > 1, "Multiple dominant hand scripts on player, remove one");
+            Assert.AreNotEqual(numberOfDominantsHands, 0, "No Dominant Hand Found on " + gameObject.name );
+            Assert.IsFalse(numberOfDominantsHands > 1, "Multiple dominant hand scripts on " + gameObject.name + ", remove one");
             return dominantHands[0].gameObject;
         }
 

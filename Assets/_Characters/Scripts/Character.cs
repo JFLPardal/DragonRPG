@@ -15,7 +15,7 @@ namespace RPG.Characters
 
         [Header("Capsule Collider")]
         [SerializeField] Vector3 colliderCenter;
-        [SerializeField] float colliderRadius;
+        [SerializeField] float colliderRadius = 1f;
         [SerializeField] float colliderHeight;
 
         [Header("Nav Mesh Agent")]
