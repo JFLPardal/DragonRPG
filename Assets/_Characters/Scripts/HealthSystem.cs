@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace RPG.Characters
 {
-
     public class HealthSystem : MonoBehaviour
     {
-
         [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] Image healthBar;
         [SerializeField] AudioClip[] damageSounds;
@@ -65,12 +61,13 @@ namespace RPG.Characters
             characterMovement.Kill();
             animator.SetTrigger(DEATH_TRIGGER);
 
+            audioSource.clip = deathSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
+            audioSource.Play();
+            yield return new WaitForSecondsRealtime(audioSource.clip.length);
+
             var playerComponent = GetComponent<PlayerControl>();
             if(playerComponent && playerComponent.isActiveAndEnabled)
             {
-                audioSource.clip = deathSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
-                audioSource.Play();
-                yield return new WaitForSecondsRealtime(audioSource.clip.length);
                 SceneManager.LoadScene(0);
             }
             else // for now we assume these are enemies, but NPCs are in this 'else' as well 
