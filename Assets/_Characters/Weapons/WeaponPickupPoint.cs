@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RPG.Characters
 { 
     [ExecuteInEditMode]
     public class WeaponPickupPoint : MonoBehaviour
     {
+        [SerializeField] GameObject particlesAndLight;
         [SerializeField] WeaponConfig weaponConfig;
         [SerializeField] AudioClip pickUpSFX;
 
@@ -46,6 +44,8 @@ namespace RPG.Characters
         {
             FindObjectOfType<PlayerControl>().GetComponent<WeaponSystem>().PutWeaponInHand(weaponConfig);
             audioSource.PlayOneShot(pickUpSFX);
+            Destroy(gameObject);
+            Destroy(particlesAndLight);
         }
     }
 }
